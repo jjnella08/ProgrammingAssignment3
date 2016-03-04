@@ -40,5 +40,15 @@ best <- function(state, outcome) {
   minRow <- outcomeDF.sub3[outcomeDF.sub3[,3] == min(outcomeDF.sub3[, 3]),]
   
   ## get the Hospital name from the first column
-  return(as.character(minRow[1]))
+  HospName <- minRow[, 1]
+
+  ## In case of a tie, order the Hospital names and then retrieve the
+  ## Hospital Name by lowest alphabet order
+  if (NROW(HospName) > 1){
+    bestRow <- order(HospName[,1])
+    return(bestRow)
+  } else {           ## if only one row is returned
+    return(HospName)
+  }
+  
 }
