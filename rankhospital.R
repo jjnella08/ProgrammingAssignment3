@@ -50,9 +50,10 @@ rankhospital <- function(state, outcome, num = "best") {
   } else if (num == "worst"){
     rIdx <- max(Sub3Sort[, 4])
   } else if (num <= max(Sub3Sort[, 4])){
-    rIdx <= num
+    rIdx <- num
   } else {
     return(NA)
   }
-  return(Sub3Sort$Hospital.Name[rIdx])
+  RankSubSet <- subset(Sub3Sort, RankCol == rIdx)
+  return(RankSubSet$Hospital.Name)
 }
